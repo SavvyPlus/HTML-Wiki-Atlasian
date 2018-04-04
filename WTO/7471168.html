@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WPT Trading Operations : Manual Overrides – MATLAB Script</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">WPT Trading Operations</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="WPT-Trading-Operations-Home_7471158.html">WPT Trading Operations Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Documentation-for-Weekly-Cash-Forecast_7471166.html">Documentation for Weekly Cash Forecast</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            WPT Trading Operations : Manual Overrides – MATLAB Script
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> James Cheong</span>, last modified on Feb 23, 2016
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="ManualOverrides–MATLABScript-HighGrowthDiscountandIncreased/ReducedLoadPremium"><strong>High Growth Discount and Increased/Reduced Load Premium</strong></h1><p>Line 230, <span style="color: rgb(0,0,255);">if</span> ACTUAL == 1 <br class="atl-forced-newline"/> When the actual High Growth Discount and Increased/Reduced Load Premium have been charged, the actual values can be used to override those calculated by the model to overcome inaccuracies due to the weekly resolution used.<br/> Connect to the MEL-SVR-DB-002 SQL database using an appropriate version of SQL Server Management Studio and run the following query. Note that the later months might not have the full complete set days with final version data available.</p><p style="margin-left: 30.0px;"><br/> <span style="color: rgb(0,0,255);">SELECT</span> <span style="color: rgb(255,0,255);">Year</span><span style="color: rgb(128,128,128);">,</span> <span style="color: rgb(255,0,255);">Month</span><span style="color: rgb(128,128,128);">,</span> [Final High Growth Adjustment]<span style="color: rgb(128,128,128);">,</span> [Increased Load Premium (Final)]<span style="color: rgb(128,128,128);">,</span> [Reduced Load Premium (Final)]<br/> <span style="color: rgb(0,0,255);">FROM</span> [WPT]<span style="color: rgb(128,128,128);">.</span>[dbo]<span style="color: rgb(128,128,128);">.</span>[OPG_Mthly_LFH_CFD_Summary]<br/> <span style="color: rgb(0,0,255);">order</span> <span style="color: rgb(0,0,255);">by</span> <span style="color: rgb(255,0,255);">Year</span><span style="color: rgb(128,128,128);">,</span> <span style="color: rgb(255,0,255);">Month</span></p><h1 id="ManualOverrides–MATLABScript-CounterpartyInitialMarginforFlatSwaps"><strong>Counterparty Initial Margin for Flat Swaps</strong></h1><p>Line 280, <span style="color: rgb(0,0,255);">if</span> ACTUAL == 1 <br class="atl-forced-newline"/> The model assumes a default initial margin of $20,000 per MW per quarter for Q1 contracts and $8,500 per MW per quarter for all other quarters. To correct for the actual initial margin agreed upon for actual contracts, these assumed values need to be reversed out. The code from lines 280 to 340 deals with this scenario.</p><h1 id="ManualOverrides–MATLABScript-FlatSwapCFD"><strong>Flat Swap CFD</strong></h1><p>Line 360, <span style="color: rgb(0,0,255);">if</span> ACTUAL == 1 <br class="atl-forced-newline"/> The model uses a weekly resolution, thus contracts that do not start on the first day of the NEM week or do not end on the last day of the NEM week will have an incorrect CFD calculated.<br/> The code from line 360 to 370 corrects for these inaccuracies with the actual CFD values. The actual values can be found by running the following query and using the values from the [Flat Swap CFD] column.</p><p style="margin-left: 30.0px;"><br/> <span style="color: rgb(0,0,255);">SELECT</span> <span style="color: rgb(128,128,128);">*</span><br/> <span style="color: rgb(0,0,255);">FROM</span> [WPT]<span style="color: rgb(128,128,128);">.</span>[dbo]<span style="color: rgb(128,128,128);">.</span>[MBL_Weekly_CFD]<br/> <span style="color: rgb(0,0,255);">order</span> <span style="color: rgb(0,0,255);">by</span> Code</p><h1 id="ManualOverrides–MATLABScript-LoadFollowingHedgeCFD"><strong>Load Following Hedge CFD</strong></h1><p>Line 450, <span style="color: rgb(0,0,255);">if</span> ACTUAL == 1 <br class="atl-forced-newline"/> Similarly, due to the model's weekly resolution, the quarterly load following contracts do not always start on the first day of the NEM week or end on the last day of the NEM week. Thus inaccuracies are introduced.<br/> The code from line 450 to 455 corrects for these inaccuracies with the actual CFD values. The actual values can be found by running the following query and using the values from the [Final CFD] column.</p><p style="margin-left: 30.0px;"><br/> <span style="color: rgb(0,0,255);">SELECT</span> <span style="color: rgb(128,128,128);">*</span><br/> <span style="color: rgb(0,0,255);">FROM</span> [WPT]<span style="color: rgb(128,128,128);">.</span>[dbo]<span style="color: rgb(128,128,128);">.</span>[OPG_Weekly_LFH_CFD_Summary]<br/> <span style="color: rgb(0,0,255);">order</span> <span style="color: rgb(0,0,255);">by</span> Code <br class="atl-forced-newline"/> </p>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 20, 2017 12:16</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

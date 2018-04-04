@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IT Procedures : System Architecture</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">IT Procedures</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="IT-Systems-Documentation_31784980.html">IT Systems Documentation</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            IT Procedures : System Architecture
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Andrew Dodds</span>, last modified on May 30, 2017
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>At a high level, the data flow is set out in the table below.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">System Layer</th><th class="confluenceTh">Activity</th><th class="confluenceTh">Key Components</th></tr><tr><td class="confluenceTd">Data Collection Layer</td><td class="confluenceTd"><p>Data is collected via various channels:</p><ul><li>Regular emailed reports</li><li>Passive &amp; active (S)FTP transfers</li><li>FTP/HTTP downloads</li><li>Manually by users</li></ul></td><td class="confluenceTd"><ul><li>Email Attachment Downloader</li><li>SavvyDownloadScheduler</li><li>FTP Server</li><li>User-accessible file shares</li></ul></td></tr><tr><td colspan="1" class="confluenceTd">Data Bus &amp; File Storage Layer</td><td colspan="1" class="confluenceTd"><ul><li>Files are queued and prioritised for processing.</li><li>Processed files are archived and retention policies applied.</li><li>File transfers between MEL and DC environments take place</li></ul></td><td colspan="1" class="confluenceTd"><ul><li>File system</li><li>Archiving/cleanup scripts</li><li>Folder synchronisation software</li></ul></td></tr><tr><td colspan="1" class="confluenceTd">Data Loading Layer</td><td colspan="1" class="confluenceTd"><ul><li>Files are processed and data loaded into system</li><li>Error files are set aside for reprocessing and further review</li><li>Version control of data is applied</li><li>Monitoring of data feeds takes place</li></ul></td><td colspan="1" class="confluenceTd"><ul><li>SavvyDataLoader</li><li>MeterDataLoader</li><li>InvoiceLoader</li><li>pdrLoader</li><li>Monitoring jobs</li></ul></td></tr><tr><td colspan="1" class="confluenceTd">Database Layer</td><td colspan="1" class="confluenceTd"><ul><li>Data is stored in relational form</li><li>Views are applied to:<ul><li>combine similar data from multiple sources</li><li>provide more user-friendly formats for operational tasks</li></ul></li><li>Functions, stored procedures and views for:<ul><li>monitoring</li><li>data verification and cleansing</li><li>collating inputs for applications</li></ul></li></ul></td><td colspan="1" class="confluenceTd"><p>Key databases:</p><ul><li>MarketData</li><li>MeterDataDB</li><li>EnergyAccounting</li><li>InvoiceLoaderDB</li><li>ElecMMS</li><li>ApplicationsDB</li></ul></td></tr><tr><td colspan="1" class="confluenceTd">Data Management and Application Layer</td><td colspan="1" class="confluenceTd"><ul><li>Manual data management tasks performed via web portal GUI</li><li>Bulk data uploads via templates</li><li>Budgets, cost outlooks, invoice validation, NTRs</li><li>Meter data forecasting &amp; aggregation</li></ul></td><td colspan="1" class="confluenceTd"><ul><li>Web Portal</li><li>Cost Calculator</li><li>NTR Calculator</li><li>Spot Forecasting</li><li>Meter Data Extractor</li></ul></td></tr><tr><td colspan="1" class="confluenceTd">Reporting ETL Layer</td><td colspan="1" class="confluenceTd"><ul><li>Preparation of flat, convenient reporting tables and views</li><li>Recording of data change history</li></ul></td><td colspan="1" class="confluenceTd"><ul><li>MakeReportingTable scripts</li><li>Report_Staging database</li><li>Reporting database</li></ul></td></tr></tbody></table></div><p><br/></p><p><br/></p><p>A visual representation of the system is shown in the figure below.</p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/51675367/51576993.png" data-image-src="attachments/51675367/51576993.png" data-unresolved-comment-count="0" data-linked-resource-id="51576993" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="sys_arch_diagram.png" data-base-url="https://savvyplus.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="51675367" data-linked-resource-container-version="7" data-media-id="dc22b1d6-51d1-4b0f-b871-c93a60be4bf6" data-media-type="file"></span></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/51675367/51576993.png">sys_arch_diagram.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 16, 2017 14:05</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
